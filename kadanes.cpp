@@ -55,18 +55,30 @@ int kadanes(vector<int>& nums) {
 // it is just another variation of Kadanes algorithm
 
 vector<int> slidingWindow(vector<int> nums) {
+    // we set the maximum value of subarray to the first element
     int maxSum = nums[0];
+    // and current sum to 0
     int currSum = 0;
+    // now we define 2 variable to keep track of the max values
     int maxL = 0, maxR = 0;
+    // define a left pointer to 0
     int L = 0;
 
+    // now we will iterate the right pointer till the length of array
     for (int R = 0; R < nums.size(); R++) {
+        // now we want to check if the currSum is less than 0 that is if it is negative
         if (currSum < 0) {
+            // if it is negative we just set it to zero
             currSum = 0;
+            // and keep both the pointers at same location
             L = R;
         }
+        // now we just calculate the value of current sum by adding with the next element
         if (currSum > maxSum) {
+            // now we see if the current pointer is current sum is greater than maximum Sum
             maxSum = currSum;
+            // if the condition is satisfied then we assign the value fo current sum to max sum
+            // and we assign the value of left and right pointer to maxL and maxR
             maxL = L;
             maxR = R;
         }
